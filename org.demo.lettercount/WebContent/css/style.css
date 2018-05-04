@@ -1,0 +1,37 @@
+@charset "utf-8";
+/* CSS Document */
+
+html { height:100%;}
+body { height:100%; font:13px/20px Tahoma, Geneva, sans-serif;}
+a { text-decoration:none; outline:0; cursor:pointer; }
+@font-face {
+  font-family: "Interstate";
+  font-style: normal;
+  font-weight: normal;
+  src: url("//cloud.webtype.com/webtype/ff/2/04a99c15-62de-42fb-90b3-c4575762efac#iefix") format("embedded-opentype"), url("//cloud.webtype.com/webtype/ff/3/9786108e-84c0-4285-b7cf-c5cfcb698768") format("woff"), url("//cloud.webtype.com/webtype/ff/1/20193a42-c4a7-477f-be7a-ed02227387d3") format("truetype"), url("//cloud.webtype.com/webtype/ff/4/32f415c1-0001-4e40-8ad7-ea0f99be4044#web") format("svg");
+}
+
+.topbar {
+	width: 100%;
+	background: #008ae6;
+	height: 100px;	
+}
+
+.heading {	
+	text-align: center;
+	vertical-align: text-bottom;	
+    text-shadow: 2px 2px 4px white;
+	line-height: 100px;
+	 font-size: 200%;	
+}
+
+.buttonCheck {	
+	float: right;
+}
+
+#content {		
+    margin: auto;
+    width: 50%;   
+    padding: 10px;
+	padding-top: 80px;
+}

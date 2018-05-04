@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<title>Demo</title>
+<link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body>
+	<div class="topbar">
+		<div class="heading">Please enter the data to be checked below.</div>		
+	</div>	
+	
+		<div id="content">
+			<form action="rest/demo" method="post">				
+					<div style="position: relative;">
+							<table>
+								<tbody>
+									<tr>
+										<td><label>Letter:</label></td>
+										<td><input id="title" name="letter" maxlength="1" tabindex="1"
+											       placeholder="enter one letter" data-min-length="1" data-max-length="1" type="text"></td>
+									</tr>									
+									<tr>
+										<td valign="top"><label for="textInput">Text:</label></td>
+										<td>
+											<div><textarea id="textInput" name="textInput"
+												           cols="92" rows="15" tabindex="101"></textarea>
+											</div>
+											<div class="buttonCheck">
+												<input id="buttonCheckID" value="Submit" type="submit">											
+											</div>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+					</div>
+			</form>
+		</div>	
+</body>
+</html>
