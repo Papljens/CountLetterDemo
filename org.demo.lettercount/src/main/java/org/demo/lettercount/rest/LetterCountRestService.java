@@ -34,6 +34,7 @@ public class LetterCountRestService {
 	 *then counts the occurrence of the given letter in the given text (calls CountLetter.count())
 	 *
 	 */
+	
 	@POST	//This function reacts to HTTP Post
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)    //Don't use @Consumes in order to consume all MediaTypes
 	@Produces(MediaType.TEXT_PLAIN)						//Defines response media type
