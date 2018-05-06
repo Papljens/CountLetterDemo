@@ -1,4 +1,4 @@
-package org.demo.lettercount;
+package org.demo.lettercount.rest;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.FormParam;
@@ -9,6 +9,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import org.apache.logging.log4j.Logger;
+import org.demo.lettercount.services.CountLetter;
 import org.apache.logging.log4j.LogManager;
 /**
  *Jersey REST Service Class

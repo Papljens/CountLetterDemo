@@ -51,9 +51,14 @@ dependencies {
     
     // Jersey
     compile 'org.glassfish.jersey.containers:jersey-container-servlet:2.25.1'
+    
+    // Jersey Test Framework
     compile 'org.glassfish.jersey.test-framework.providers:jersey-test-framework-provider-jdk-http:2.22.1'
     
+    // Rest Easy Test Framework
+    compile "org.jboss.resteasy:resteasy-jaxrs:3.5.1.Final</"
     
+   
     
 }
 

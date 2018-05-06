@@ -1,4 +1,4 @@
-package org.demo.lettercount;
+package org.demo.lettercount.services;
 
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
@@ -8,7 +8,7 @@ import org.apache.logging.log4j.LogManager;
  *@author PaplJens
  */
 
-class CountLetter {
+public class CountLetter {
 	
 	private static final Logger logger = LogManager.getLogger(CountLetter.class);
 	
@@ -56,5 +56,5 @@ class CountLetter {
 		
 		logger.info("counting finished. result is: {}", result);
 		return result;
-	}
+	}	
 }
