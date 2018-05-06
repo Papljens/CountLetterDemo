@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.demo.lettercount.CountLetterTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2018-05-06T20:45:56" hostname="DESKTOP-SHUA981" time="0.441">
+  <properties/>
+  <testcase name="testEmptyText" classname="org.demo.lettercount.CountLetterTest" time="0.44"/>
+  <testcase name="testNullpointerText" classname="org.demo.lettercount.CountLetterTest" time="0.0"/>
+  <testcase name="testIfCountIsExactly10" classname="org.demo.lettercount.CountLetterTest" time="0.0"/>
+  <testcase name="testEmptyletter" classname="org.demo.lettercount.CountLetterTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[ERROR StatusLogger No Log4j 2 configuration file found. Using default configuration (logging only errors to the console), or user programmatically provided configurations. Set system property 'log4j2.debug' to show Log4j 2 internal initialization logging. See https://logging.apache.org/log4j/2.x/manual/configuration.html for instructions on how to configure Log4j 2
+]]></system-err>
+</testsuite>
