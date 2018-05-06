@@ -8,34 +8,123 @@
 </head>
 <body>
 	<div class="topbar">
-		<div class="heading">Please enter the data to be checked below.</div>		
-	</div>	
-	
-		<div id="content">
-			<form action="rest/demo" method="post">				
-					<div style="position: relative;">
-							<table>
-								<tbody>
-									<tr>
-										<td><label>Letter:</label></td>
-										<td><input id="title" name="letter" maxlength="1" tabindex="1"
-											       placeholder="enter one letter" data-min-length="1" data-max-length="1" type="text"></td>
-									</tr>									
-									<tr>
-										<td valign="top"><label for="textInput">Text:</label></td>
-										<td>
-											<div><textarea id="textInput" name="textInput"
-												           cols="92" rows="15" tabindex="101"></textarea>
-											</div>
-											<div class="buttonCheck">
-												<input id="buttonCheckID" value="Submit" type="submit">											
-											</div>
-										</td>
-									</tr>
-								</tbody>
-							</table>
-					</div>
-			</form>
-		</div>	
+		<div class="heading">Please enter the data to be checked below.</div>
+	</div>
+
+	<div id="content">
+<!-- 		<form action="rest/demo" method="post"> -->
+		
+		
+		<form id="check_letter_form" action="rest/demo" method="post">
+		
+			<div style="position: relative;">
+				<table>
+					<tbody>
+					
+						<tr>
+							<td><div ></div></td>
+							<td><div  id="result"></div></td>
+						
+						</tr>
+					
+					
+					
+						<tr>
+							<td><label>Letter:</label></td>
+							<td><input id="letter" name="letter" maxlength="1"
+								tabindex="1" placeholder="enter one letter" data-min-length="1"
+								data-max-length="1"></td>
+						</tr>
+						<tr>
+							<td valign="top"><label for="text">Text:</label></td>
+							<td>
+								<div>
+									<textarea id="text" name="text" cols="92" rows="15"
+										tabindex="101"></textarea>
+								</div>
+								<div class="buttonCheck">
+									<input id="buttonCheck" value="Submit" type="submit">
+								</div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</form>
+
+
+
+		<script>
+			$("#check_letter_form").submit(function(event) {	
+				//disable default submit
+				event.preventDefault();				
+			
+				
+				var letter = $( "#letter" ).val();
+				var result = $("#result");
+				var form = $('#check_letter_form');				
+				var text = $( "#text" ).val()
+				
+				//TODO  RegEx is not working
+				//maybe escape slash  / --> &#x2F;     forward slash is included as it helps end an HTML entity
+				var regex = new RegExp("/^[A-z]+$/"); 
+				
+				//Check for empty letter
+				if (letter.length < 1) {
+					   alert("Please enter a letter");
+					   return
+				    }
+				//Check for empty text
+				if (text.length < 1) {
+					   alert("Please enter a text");
+					   return
+				    }
+				//Only alphabetical letters are allowed. Check via regular expression
+				if (regex.test(letter)){
+					   alert("Only letters are allowed");		
+					   return
+				}
+				
+				// Serialize the form data			
+				var data = $(form).serialize();
+				
+				//Send Post to backend
+				$.ajax({
+					type: 'POST',
+					url: $(form).attr('action'),
+					data: data,
+					contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+										
+				})
+				.done(function(response) {
+	    			// Make sure that the result div has the 'success' class
+				    $(result).removeClass('error');
+				    $(result).addClass('success');
+				
+				    // Set the message text.
+				    $(result).text(response);
+				
+				    //Eventually Clear the form here.
+				  
+				})
+				
+				.fail(function(data) {
+				    // Make sure that the formMessages div has the 'error' class
+				    $(result).removeClass('success');
+				    $(result).addClass('error');
+				
+				    // Set the message text.
+				    if (data.responseText !== '') {
+				        $(result).text(data.responseText);
+				    } else {
+				        $(result).text('Oops! An error occured and your message could not be sent.');
+				    }
+				})
+				
+			});//end of Submit Form
+		
+		</script>
+
+	</div>
 </body>
 </html>

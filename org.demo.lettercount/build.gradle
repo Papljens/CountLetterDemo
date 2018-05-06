@@ -10,8 +10,23 @@
 apply plugin: 'java-library'
 apply plugin: 'war'
 apply plugin: 'eclipse-wtp'
+apply plugin: "jacoco"
 
 project.webAppDirName = 'WebContent'
+
+
+// Configuring the JaCoCo Plugin
+jacoco {
+    toolVersion = "0.8.1"
+    reportsDir = file("$buildDir/customJacocoReportDir")
+}
+jacocoTestReport {
+    reports {
+        xml.enabled true
+        csv.enabled false
+        html.destination file("${buildDir}/jacocoHtml")
+    }
+}
 
 // In this section you declare where to find the dependencies of your project
 repositories {
@@ -30,7 +45,15 @@ dependencies {
     // Use JUnit test framework
     testImplementation 'junit:junit:4.12'
     
+    // Log4j 
+    compile group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.11.0'
+  	compile group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.11.0'
+    
+    // Jersey
     compile 'org.glassfish.jersey.containers:jersey-container-servlet:2.25.1'
+    compile 'org.glassfish.jersey.test-framework.providers:jersey-test-framework-provider-jdk-http:2.22.1'
+    
+    
     
 }
 
