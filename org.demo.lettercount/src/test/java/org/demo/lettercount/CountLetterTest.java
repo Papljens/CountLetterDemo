@@ -7,21 +7,12 @@ import org.demo.lettercount.services.CountLetter;
 import org.junit.Test;
 
 public class CountLetterTest {		
-				
-		String text0 = "";
-		char letter0 = ' ';
-		
+					
 		String textCorrect = "ajknjknjknjknjknjknanjljknjklnjkanjkljkanjknlaaljknljkaaaa";
-			
-		String text2 = "153453453453";
-		char letter2 = '1';
-		
 		String textNull = null;
-		String textEmpty = "";
-	
+		String textEmpty = "";	
 		char letterCorrect = 'a';
-		char letterEmpty = ' ';
-			
+		char letterEmpty = ' ';			
 
 	
 	@Test(expected= NullPointerException.class) 

@@ -26,7 +26,7 @@ public class CountLetter {
 		    throw new NullPointerException("text is null");
 		}	
 		
-		if (text.isEmpty() ||  text.length() <= 0) {	
+		if (text.isEmpty()) {	
 			logger.info("text is empty: {}", text);
 		    throw new IllegalArgumentException("text is empty");
 		}
