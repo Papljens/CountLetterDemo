@@ -11,6 +11,8 @@ apply plugin: 'java-library'
 apply plugin: 'war'
 apply plugin: 'eclipse-wtp'
 apply plugin: "jacoco"
+apply plugin:'java'
+
 
 project.webAppDirName = 'WebContent'
 
@@ -61,6 +63,7 @@ dependencies {
     
     // Rest Easy Test Framework
    // compile "org.jboss.resteasy:resteasy-jaxrs:3.5.1.Final</"
+      compile 'org.jboss.resteasy:resteasy-jaxrs:3.5.1.Final'
      
 }
 
