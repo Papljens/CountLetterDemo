@@ -19,6 +19,7 @@ import org.apache.logging.log4j.LogManager;
  *text, XML and HTML.
  *The browser requests per default the HTML MIME type.
  *
+ *
  *@author  PaplJens
  *
  */
