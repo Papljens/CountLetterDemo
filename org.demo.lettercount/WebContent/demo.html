@@ -1,126 +1,147 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-
+<!DOCTYPE html>
+<html>
 <head>
-<script src="jquery-3.3.1.js"></script>
+<script src="jquery-3.3.1.js" type="text/javascript"></script>
 <title>Demo</title>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+	integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
+	crossorigin="anonymous">
 <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
-	<div class="topbar">
-		<div class="heading">Please enter the data to be checked below.</div>
+	<div>
+		<div id="content">
+			<div class="topbar">
+				<h1 class="display-4 text-center">Please enter the data to be
+					checked</h1>
+			</div>
+			<form id="check_letter_form" method="post" action="">
+				<div class="form-group">
+					<label for="letter">Letter</label> <input type="text"
+						class="form-control" id="letter" maxlength="1">
+				</div>
+				<label for="text">Text</label>
+				<div class="form-group">
+					<textarea class="form-control" id="text" rows="3" cols=""></textarea>
+				</div>
+				<button id="submitForm" type="button" class="btn btn-success">Check</button>
+				<!-- Button trigger modal -->
+				<button type="button" class="btn btn-primary" data-toggle="modal"
+					data-target="#resultModal">Launch demo modal</button>
+			</form>
+			<div id="errorBox" class="alert alert-danger" role="alert"
+				style="visibility: hidden; margin-top: 15px;">
+				<div id="errorMsg"></div>
+			</div>
+		</div>
 	</div>
 
-	<div id="content">		
-		<form id="check_letter_form" action="rest/demo" method="post">
-		
-			<div style="position: relative;">
-				<table>
-					<tbody>
-					
-						<tr>
-							<td><div ></div></td>
-							<td><div  id="result"></div></td>
-						
-						</tr>
-					
-					
-					
-						<tr>
-							<td><label>Letter:</label></td>
-							<td><input id="letter" name="letter" maxlength="1"
-								tabindex="1" placeholder="enter one letter" data-min-length="1"
-								data-max-length="1"></td>
-						</tr>
-						<tr>
-							<td valign="top"><label for="text">Text:</label></td>
-							<td>
-								<div>
-									<textarea id="text" name="text" cols="92" rows="15"
-										tabindex="101"></textarea>
-								</div>
-								<div class="buttonCheck">
-									<input id="buttonCheck" value="Submit" type="submit">
-								</div>
-							</td>
-						</tr>
-					</tbody>
-				</table>
+
+
+	<!-- Modal -->
+	<div class="modal fade" id="resultModal" tabindex="-1" role="dialog"
+		aria-labelledby="resultModal" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Result of your
+						Query</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div id="result" class="modal-body"></div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary"
+						data-dismiss="modal">Close</button>
+				</div>
 			</div>
-		</form>
+		</div>
+	</div>
 
 
-
-		<script>
-			$("#check_letter_form").submit(function(event) {	
+	<script type="text/javascript">
+			$("#submitForm").click(function(event) {
 				//disable default submit
-				event.preventDefault();				
-			
-				
+
+				event.preventDefault();
+
+
 				var letter = $( "#letter" ).val();
 				var result = $("#result");
-				var form = $('#check_letter_form');				
+				var form = $('#check_letter_form');
 				var text = $( "#text" ).val()
-				
-				//Check for empty letter
-				if (letter.length < 1) {
-					   alert("Please enter a letter");
-					   return
-				    }
-				//Check for empty text
-				if (text.length < 1) {
-					   alert("Please enter a text");
-					   return
-				    }
+				var errorBox = document.getElementById('errorBox');
+				var errorMsg = document.getElementById('errorMsg');
+
 				//Only alphabetical letters are allowed. Check via regular expression
 				if (letter.search(/[^a-zA-Z]+/) != -1) {
-					  alert("Only letters are allowed");	
+						errorBox.style.visibility = "visible";
+					  errorMsg.innerHTML = "Only letters are allowed";
 					  return
 					}
-				
-				
-				
-				
-				// Serialize the form data			
-				var data = $(form).serialize();
-				
+
+				//Check for empty letter
+				if (letter.length < 1) {
+					errorBox.style.visibility = "visible";
+					errorMsg.innerHTML = "Please enter a letter";
+					return
+				}
+
+				if (letter.length >= 2) {
+					errorBox.style.visibility = "visible";
+					errorMsg.innerHTML = "Only one letter is allowed";
+					return
+				}
+
+				//Check for empty text
+				if (text.length < 1) {
+					errorMsg.innerHTML = "Please enter a text";
+					return;
+				}
+
+				errorBox.style.visibility = "hidden";
+				// Serialize the form data
+				var data = "hallo";
+
 				//Send Post to backend
 				$.ajax({
 					type: 'POST',
-					url: $(form).attr('action'),
-					data: data,
+					//url: "http://localhost:8080/org.demo.letternt/rest/demo",
+					url: "rest/demo",
+					data: {"letter": letter, "text": text},
 					contentType: "application/x-www-form-urlencoded; charset=UTF-8",
-										
 				})
 				.done(function(response) {
 	    			// Make sure that the result div has the 'success' class
 				    $(result).removeClass('error');
 				    $(result).addClass('success');
-				
 				    // Set the message text.
 				    $(result).text(response);
-				
 				    //Eventually Clear the form here.
-				  
 				})
-				
 				.fail(function(data) {
 				    // Make sure that the formMessages div has the 'error' class
 				    $(result).removeClass('success');
 				    $(result).addClass('error');
-				
 				    // Set the message text.
 				    if (data.responseText !== '') {
 				        $(result).text(data.responseText);
 				    } else {
-				        $(result).text('Oops! An error occured and your message could not be sent.');
+				        $(result).text('An error occured and your message could not be sent');
 				    }
 				})
-				
 			});//end of Submit Form
-		
 		</script>
-
-	</div>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+		integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+		crossorigin="anonymous" type="text/javascript"></script>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"
+		integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
+		crossorigin="anonymous" type="text/javascript"></script>
 </body>
 </html>

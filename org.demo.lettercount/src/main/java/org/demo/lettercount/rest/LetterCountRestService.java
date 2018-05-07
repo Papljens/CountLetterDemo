@@ -35,7 +35,7 @@ public class LetterCountRestService {
 	 *
 	 */
 	
-	@POST	//This function reacts to HTTP Post
+	@POST	//This function reacts to HTTP Post	
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)    //Don't use @Consumes in order to consume all MediaTypes
 	@Produces(MediaType.TEXT_PLAIN)						//Defines response media type
 	/**
