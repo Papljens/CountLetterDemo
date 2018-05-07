@@ -34,13 +34,6 @@ public class CountLetter {
 		if (letter == ' ') {
 			logger.info("letter is empty: {}", letter);
 			throw new IllegalArgumentException("letter is empty");			
-		}	
-		
-		//If letter is compared to text containing only given letter, the counting function would crash.
-		//So the text length is restricted to Integer.MAX_VALUE (2147483647);
-		if(text.length() > Integer.MAX_VALUE) {
-			logger.info("text is too long");			
-			throw new IllegalArgumentException("text is too long");	
 		}
 								
 		int result = 0;			
