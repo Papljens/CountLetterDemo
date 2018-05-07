@@ -10,6 +10,9 @@
 <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
+	<noscript>
+  <h1>Bitte Javascript aktivieren</h1>
+	</noscript>
 	<div>
 		<div id="content">
 			<div class="topbar">
@@ -26,9 +29,6 @@
 					<textarea class="form-control" id="text" rows="3" cols=""></textarea>
 				</div>
 				<button id="submitForm" type="button" class="btn btn-success">Check</button>
-				<!-- Button trigger modal -->
-				<button type="button" class="btn btn-primary" data-toggle="modal"
-					data-target="#resultModal">Launch demo modal</button>
 			</form>
 			<div id="errorBox" class="alert alert-danger" role="alert"
 				style="visibility: hidden; margin-top: 15px;">
@@ -63,6 +63,11 @@
 
 
 	<script type="text/javascript">
+		$("#testbutton").click(function() {
+			document.getElementById('result').innerHTML = "test";
+			$('#resultModal').modal();
+		});
+
 			$("#submitForm").click(function(event) {
 				//disable default submit
 
@@ -76,7 +81,7 @@
 				var errorBox = document.getElementById('errorBox');
 				var errorMsg = document.getElementById('errorMsg');
 
-				//Only alphabetical letters are allowed. Check via regular expression
+				//Only English alphabetical letters are allowed. Check via regular expression ^.*(?=.{8,})(?=.*[a-zA-ZäöüÄÖÜß])(?=.*\d).*$  //old /[^a-zA-Z]+/) != -1
 				if (letter.search(/[^a-zA-Z]+/) != -1) {
 						errorBox.style.visibility = "visible";
 					  errorMsg.innerHTML = "Only letters are allowed";
@@ -116,10 +121,9 @@
 				})
 				.done(function(response) {
 	    			// Make sure that the result div has the 'success' class
-				    $(result).removeClass('error');
-				    $(result).addClass('success');
-				    // Set the message text.
-				    $(result).text(response);
+						result.text("Ocurrence of letter is" + response);
+						$('#resultModal').modal();
+						//document.getElementById('#resultModal').modal();
 				    //Eventually Clear the form here.
 				})
 				.fail(function(data) {
