@@ -62,10 +62,6 @@
 				var form = $('#check_letter_form');				
 				var text = $( "#text" ).val()
 				
-				//TODO  RegEx is not working
-				//maybe escape slash  / --> &#x2F;     forward slash is included as it helps end an HTML entity
-				var regex = new RegExp("/^[A-z]+$/"); 
-				
 				//Check for empty letter
 				if (letter.length < 1) {
 					   alert("Please enter a letter");
@@ -77,10 +73,11 @@
 					   return
 				    }
 				//Only alphabetical letters are allowed. Check via regular expression
-				if (regex.test(letter)){
-					   alert("Only letters are allowed");		
-					   return
-				}
+				if (letter.search(/[^a-zA-Z]+/) != -1) {
+					  alert("Only letters are allowed");	
+					  return
+					}
+				
 				
 				// Serialize the form data			
 				var data = $(form).serialize();
