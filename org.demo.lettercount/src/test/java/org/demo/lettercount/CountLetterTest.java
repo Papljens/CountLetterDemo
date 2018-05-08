@@ -1,7 +1,9 @@
 package org.demo.lettercount;
 
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
+import static org.hamcrest.CoreMatchers.instanceOf;
 
 import org.demo.lettercount.services.CountLetter;
 import org.junit.Test;
@@ -14,6 +16,14 @@ public class CountLetterTest {
 		char letterCorrect = 'a';
 		char letterEmpty = ' ';			
 
+	
+		
+	@Test
+	public void testConstructor() {		
+		CountLetter cl = new CountLetter();	
+		 assertThat(cl, instanceOf(CountLetter.class));
+	}	
+	
 	
 	@Test(expected= NullPointerException.class) 
 	public void testNullpointerText() {		

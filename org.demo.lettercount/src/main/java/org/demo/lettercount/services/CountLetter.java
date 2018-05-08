@@ -11,7 +11,7 @@ import org.apache.logging.log4j.LogManager;
 public class CountLetter {
 	
 	private static final Logger logger = LogManager.getLogger(CountLetter.class);
-	
+		
 	/**
 	 * Counts the occurrence of a given letter in a given text
 	 * @param letter
